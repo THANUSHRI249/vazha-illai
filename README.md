@@ -6,6 +6,7 @@
 ## 📌 Submission Overview
 
 - **Team Name**: thanusri249
+- **Team lead name**: THANUSHRI K
 - **Tech Stack**: HTML5, Vanilla CSS3 (Custom Design Tokens), JavaScript (ES6+), LocalStorage State Engine.
 - **Hosted Link**: Ready to deploy with 1 click on **GitHub Pages**, **Vercel**, or **Netlify**!
 
