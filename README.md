@@ -8,7 +8,7 @@ A modern, cultural South Indian restaurant web application built with a zero-API
 
 ## 📌 Submission Overview
 
-- **Team Name**: Team Vazha Ilai (வாழை இலை)
+- **Team Name**: thanusri249
 - **Tech Stack**: HTML5, Vanilla CSS3 (Custom Design Tokens), JavaScript (ES6+), LocalStorage State Engine.
 - **Level Reached**: **Platinum Level (User Stories 1–5) + Bonus Innovation**
 
