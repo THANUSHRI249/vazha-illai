@@ -153,6 +153,70 @@
         </div>
       </section>
 
+      <!-- SMART HUNGER & FOOD WASTE PREDICTOR SECTION -->
+      <section class="section-container predictor-section" id="predictorSection">
+        <div class="predictor-card">
+          <div class="predictor-header">
+            <span class="sub-header text-gold">உணவு வீணாகாமல் தடுப்போம் • SMART PORTION PREDICTOR</span>
+            <h2>How hungry are you today? (எவ்வளவு பசி?)</h2>
+            <p>Avoid over-ordering & food waste with our AI-inspired portion advisor.</p>
+          </div>
+
+          <div class="predictor-body">
+            <div class="predictor-controls">
+              
+              <!-- Hunger Level Selector -->
+              <div class="control-group">
+                <label><i class="fa-solid fa-gauge-high"></i> Select Hunger Level:</label>
+                <div class="hunger-btn-group" id="hungerGroup">
+                  <button type="button" class="hunger-btn" data-hunger="light">🥗 Light (சிறிது)</button>
+                  <button type="button" class="hunger-btn active" data-hunger="mid">🍛 Mid (மிதமான)</button>
+                  <button type="button" class="hunger-btn" data-hunger="high">🍲 High (அதிக)</button>
+                </div>
+              </div>
+
+              <!-- Diner Type Selector -->
+              <div class="control-group">
+                <label><i class="fa-solid fa-users"></i> Who is dining?</label>
+                <div class="hunger-btn-group" id="dinerGroup">
+                  <button type="button" class="diner-btn active" data-diner="adults">👨‍👩‍👧 Adult</button>
+                  <button type="button" class="diner-btn" data-diner="kids">🧒 Kid</button>
+                  <button type="button" class="diner-btn" data-diner="seniors">👴 Senior</button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- PREDICTION RESULT BOX -->
+            <div class="predictor-result-box" id="predictorResultBox">
+              <div class="recommendation-header">
+                <span class="rec-badge">🌾 Smart Portion Recommendation</span>
+                <h3 id="recTitle">Sambar Sadam + Spicy Moru OR 1 Set Ghee Roast Dosa & Coffee</h3>
+              </div>
+              <p class="rec-advice" id="recAdvice">
+                💡 <strong>Advisor Note:</strong> This combination is perfectly balanced. <em>Avoid ordering another full plate!</em>
+              </p>
+
+              <!-- Waste Warning Card -->
+              <div class="waste-alert-card">
+                <div class="waste-icon">⚠️</div>
+                <div class="waste-info">
+                  <h4 id="wasteHeadline">You may waste ~180g of rice if you over-order!</h4>
+                  <p id="wasteSubtext">Ordering extra plates leads to food waste. Mindful eating saves food & money!</p>
+                </div>
+              </div>
+
+              <div class="rec-actions">
+                <button type="button" class="btn btn-gold" id="autoAddComboBtn">
+                  <i class="fa-solid fa-cart-plus"></i> Auto-Add Recommended Portion to Cart
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       <!-- DIGITAL MENU SECTION (User Story 1 & 3) -->
       <section class="section-container" id="menuSection">
         <div class="section-header">

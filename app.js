@@ -308,7 +308,127 @@ document.addEventListener('DOMContentLoaded', () => {
   updateUserAuthUI();
   setupEventListeners();
   updateQueueDisplay();
+  initPortionPredictor();
 });
+
+// --- SMART HUNGER & FOOD WASTE PREDICTOR ---
+function initPortionPredictor() {
+  const hungerBtns = document.querySelectorAll('.hunger-btn');
+  const dinerBtns = document.querySelectorAll('.diner-btn');
+  const recTitle = document.getElementById('recTitle');
+  const recAdvice = document.getElementById('recAdvice');
+  const wasteHeadline = document.getElementById('wasteHeadline');
+  const wasteSubtext = document.getElementById('wasteSubtext');
+  const autoAddBtn = document.getElementById('autoAddComboBtn');
+
+  if (!hungerBtns.length || !recTitle) return;
+
+  let currentHunger = 'mid';
+  let currentDiner = 'adults';
+
+  const predictions = {
+    'light-adults': {
+      title: '1 Set Ghee Roast Dosa + Kumbakonam Degree Coffee',
+      advice: '💡 <strong>Advisor Note:</strong> Perfectly light & refreshing. <em>Avoid ordering another full plate of rice!</em>',
+      waste: '140g of rice',
+      comboIds: [15, 20],
+      subtext: 'Ordering extra meals when slightly hungry leads to ~140g cooked rice waste.'
+    },
+    'light-kids': {
+      title: 'Ghee Podi Mini Idli + Fresh Mango Lassi',
+      advice: '💡 <strong>Kid Note:</strong> Soft, digestive & nutritious portion for children.',
+      waste: '120g of food',
+      comboIds: [13, 9],
+      subtext: 'Kids usually leave half-eaten heavy meals. This combo is 100% portion matched!'
+    },
+    'light-seniors': {
+      title: 'Poondu Rasam Sadam + Spicy Moru',
+      advice: '💡 <strong>Senior Note:</strong> Light, digestive & soothing for stomach wellness.',
+      waste: '160g of rice',
+      comboIds: [2, 8],
+      subtext: 'Warm rasam is light on digestion and avoids evening stomach heaviness.'
+    },
+    'mid-adults': {
+      title: 'Signature Sambar Sadam + Spicy Moru (OR Ghee Roast Dosa + Coffee)',
+      advice: '💡 <strong>Advisor Note:</strong> Optimal balanced meal! <em>Avoid ordering an extra side dish.</em>',
+      waste: '180g of rice',
+      comboIds: [1, 8],
+      subtext: 'You may waste ~180g of rice (worth ₹90) if you order 2 full main courses!'
+    },
+    'mid-kids': {
+      title: 'Appam with Sweet Coconut Milk + Medu Vada',
+      advice: '💡 <strong>Kid Note:</strong> Delicately sweet & easy to finish completely.',
+      waste: '150g of food',
+      comboIds: [16, 14],
+      subtext: 'Appam & Coconut milk provides energy without food wastage.'
+    },
+    'mid-seniors': {
+      title: 'Arisi Paruppu Sadam + Thayir Sadam & Pickle',
+      advice: '💡 <strong>Senior Note:</strong> Traditional comfort meal with herbal digestive spices.',
+      waste: '170g of rice',
+      comboIds: [3, 19],
+      subtext: 'Balanced protein & curd rice prevents nighttime acid reflux.'
+    },
+    'high-adults': {
+      title: 'Chettinad Mushroom Biryani + Rasam Sadam + Rava Kesari',
+      advice: '💡 <strong>Feast Note:</strong> Grand 3-course banana leaf feast. Enjoy wholeheartedly!',
+      waste: '50g (Low Risk)',
+      comboIds: [11, 2, 6],
+      subtext: 'High hunger level matched! High appetite means zero food waste.'
+    },
+    'high-kids': {
+      title: 'Vegetable Kothu Parotta + Elaneer Payasam',
+      advice: '💡 <strong>High Energy:</strong> Perfect treat for active hungry kids!',
+      waste: '90g of food',
+      comboIds: [10, 7],
+      subtext: 'Tasty kothu parotta keeps kids happy with sweet payasam to finish.'
+    },
+    'high-seniors': {
+      title: 'Kongu Arisi Paruppu Sadam + Ghee Podi Idli + Degree Coffee',
+      advice: '💡 <strong>Traditional Feast:</strong> Warm, satisfying & easy on digestion.',
+      waste: '80g of food',
+      comboIds: [3, 13, 20],
+      subtext: 'Nourishing protein combo for hearty senior appetite.'
+    }
+  };
+
+  function updatePrediction() {
+    const key = `${currentHunger}-${currentDiner}`;
+    const p = predictions[key] || predictions['mid-adults'];
+
+    recTitle.textContent = p.title;
+    recAdvice.innerHTML = p.advice;
+    wasteHeadline.textContent = `You may waste ~${p.waste} if you over-order!`;
+    wasteSubtext.textContent = p.subtext;
+
+    if (autoAddBtn) {
+      autoAddBtn.onclick = () => {
+        p.comboIds.forEach(id => addToCart(id));
+        showToast(`Auto-added portion combo to cart! 🌾 Save Food, Save Money.`);
+      };
+    }
+  }
+
+  hungerBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      hungerBtns.forEach(b => b.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+      currentHunger = e.currentTarget.dataset.hunger;
+      updatePrediction();
+    });
+  });
+
+  dinerBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      dinerBtns.forEach(b => b.classList.remove('active'));
+      e.currentTarget.classList.add('active');
+      currentDiner = e.currentTarget.dataset.diner;
+      updatePrediction();
+    });
+  });
+
+  updatePrediction();
+}
 
 // --- MENU RENDERER ---
 function renderMenu(category = 'all', searchQuery = '') {

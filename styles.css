@@ -1546,9 +1546,143 @@ body {
   display: none !important;
 }
 
+/* ==================== SMART HUNGER & FOOD WASTE PREDICTOR ==================== */
+.predictor-section {
+  margin: 40px auto;
+}
+
+.predictor-card {
+  background: linear-gradient(135deg, #113826 0%, #1b4332 100%);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  color: #fff;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(233, 196, 106, 0.3);
+}
+
+.predictor-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.predictor-header h2 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--color-turmeric);
+  margin-top: 4px;
+}
+
+.predictor-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 26px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.control-group label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 10px;
+}
+
+.hunger-btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.hunger-btn, .diner-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hunger-btn.active, .diner-btn.active {
+  background: var(--color-turmeric);
+  color: var(--color-leaf-dark);
+  border-color: var(--color-turmeric);
+  box-shadow: var(--shadow-gold);
+}
+
+.predictor-result-box {
+  background: #fff;
+  color: var(--color-dark-text);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-md);
+}
+
+.rec-badge {
+  background: var(--color-leaf-tint);
+  color: var(--color-leaf-primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.recommendation-header h3 {
+  font-family: var(--font-tamil);
+  font-size: 1.3rem;
+  color: var(--color-leaf-dark);
+  margin-bottom: 6px;
+}
+
+.rec-advice {
+  font-size: 0.9rem;
+  color: var(--color-muted-text);
+  margin-bottom: 16px;
+}
+
+.waste-alert-card {
+  background: #fff5f5;
+  border: 1px solid #feb2b2;
+  border-left: 4px solid var(--color-terracotta);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.waste-icon {
+  font-size: 2rem;
+}
+
+.waste-info h4 {
+  font-size: 1rem;
+  color: var(--color-terracotta-dark);
+  font-weight: 800;
+  margin-bottom: 2px;
+}
+
+.waste-info p {
+  font-size: 0.82rem;
+  color: #742a2a;
+}
+
 /* RESPONSIVE MEDIA QUERIES */
 @media (max-width: 900px) {
   .hero-section {
+    grid-template-columns: 1fr;
+  }
+  .predictor-controls {
     grid-template-columns: 1fr;
   }
   .reservation-card {
